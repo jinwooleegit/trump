@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script>
+        // 페이지 로딩 시간 측정 시작
+        const pageStartTime = performance.now();
+        let headerLoadTime;
+        
+        // 헤더는 이미 HTML에 인라인으로 포함되어 있으므로 바로 로드 시간 기록
+        headerLoadTime = performance.now() - pageStartTime;
+        
+        // DOM이 로드된 후 이벤트 발생
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('헤더 로딩 시간: ' + headerLoadTime.toFixed(2) + 'ms');
+            document.dispatchEvent(new CustomEvent('headerReady'));
+            document.dispatchEvent(new CustomEvent('headerLoaded'));
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2024년 공약 - 트럼프의 선거 약속 | 트럼프의 말과 비전</title>

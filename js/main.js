@@ -1,3 +1,152 @@
+// 페이지 로드 전에 초기화 함수 정의
+const initializeUI = () => {
+    // 스크롤 이벤트 감지
+    const setupScrollDetection = () => {
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
+    };
+
+    // 모바일 메뉴 토글 기능
+    const setupMobileMenu = () => {
+        // 이미 메뉴 토글 버튼이 있는지 확인
+        if (document.querySelector('.menu-toggle')) return;
+        
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        if (!header || !nav) return; // 헤더나 네비게이션이 없으면 실행하지 않음
+        
+        const toggleBtn = document.createElement('button');
+        toggleBtn.classList.add('menu-toggle');
+        toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+        toggleBtn.setAttribute('aria-label', '메뉴 열기');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        
+        const headerContainer = document.querySelector('header .container');
+        
+        if (!headerContainer) return;
+        
+        headerContainer.appendChild(toggleBtn);
+        
+        // 닫기 버튼 추가
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('menu-close');
+        closeBtn.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
+        closeBtn.setAttribute('aria-label', '메뉴 닫기');
+        closeBtn.style.display = 'none'; // 초기에는 숨김
+        
+        // nav에 닫기 버튼 추가
+        if (!nav.querySelector('.menu-close')) {
+            nav.appendChild(closeBtn);
+        }
+        
+        // 모바일 메뉴 타이틀 제거 (더 이상 추가하지 않음)
+        // 기존 타이틀 있으면 제거
+        const existingTitle = nav.querySelector('.mobile-menu-title');
+        if (existingTitle) {
+            existingTitle.remove();
+        }
+        
+        // 토글 버튼 클릭 이벤트
+        toggleBtn.addEventListener('click', function() {
+            nav.classList.add('active');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            closeBtn.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        });
+        
+        // 닫기 버튼 클릭 이벤트
+        closeBtn.addEventListener('click', function() {
+            nav.classList.remove('active');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            closeBtn.style.display = 'none';
+            document.body.style.overflow = ''; // 스크롤 다시 활성화
+        });
+        
+        // 메뉴 항목 클릭 시 메뉴 닫기
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // 창 크기가 변경될 때 모바일 메뉴 상태 조정
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992 && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    };
+
+    // 현재 활성화된 페이지에 대한 네비게이션 항목 강조
+    const highlightCurrentNavItem = () => {
+        const currentPath = window.location.pathname;
+        const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+        
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            if (link.getAttribute('href') === filename) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+    };
+
+    // 부드러운 스크롤 기능
+    const setupSmoothScroll = () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 모바일 메뉴가 열려있으면 닫기
+                    const nav = document.querySelector('nav');
+                    const toggleBtn = document.querySelector('.menu-toggle');
+                    if (nav && nav.classList.contains('active') && toggleBtn) {
+                        nav.classList.remove('active');
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                        toggleBtn.setAttribute('aria-label', '메뉴 열기');
+                        toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                    }
+                }
+            });
+        });
+    };
+
+    // 초기화 함수들을 실행
+    setupScrollDetection();
+    setupMobileMenu();
+    highlightCurrentNavItem();
+    setupSmoothScroll();
+};
+
+// 페이지가 로드되기 전에 즉시 실행 시도
+// 헤더가 인라인에 있으면 바로 초기화
+if (document.querySelector('header')) {
+    initializeUI();
+}
+
 // 페이지 로드 후 실행
 document.addEventListener('DOMContentLoaded', function() {
     // 스크롤 이벤트 감지
@@ -98,125 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 타임라인 애니메이션 초기화
     animateTimeline();
 
-    // 모바일 메뉴 토글 기능
-    function setupMobileMenu() {
-        // 이미 메뉴 토글 버튼이 있는지 확인
-        if (document.querySelector('.menu-toggle')) return;
-        
-        const header = document.querySelector('header');
-        const nav = document.querySelector('nav');
-        if (!header || !nav) return; // 헤더나 네비게이션이 없으면 실행하지 않음
-        
-        const toggleBtn = document.createElement('button');
-        toggleBtn.classList.add('menu-toggle');
-        toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
-        toggleBtn.setAttribute('aria-label', '메뉴 열기');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        
-        const headerContainer = document.querySelector('header .container');
-        
-        if (!headerContainer) return;
-        
-        headerContainer.appendChild(toggleBtn);
-        
-        // 닫기 버튼 추가
-        const closeBtn = document.createElement('button');
-        closeBtn.classList.add('menu-close');
-        closeBtn.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
-        closeBtn.setAttribute('aria-label', '메뉴 닫기');
-        closeBtn.style.display = 'none'; // 초기에는 숨김
-        
-        // nav에 닫기 버튼 추가
-        if (!nav.querySelector('.menu-close')) {
-            nav.appendChild(closeBtn);
-        }
-        
-        // 모바일 메뉴 타이틀 추가
-        if (!nav.querySelector('.mobile-menu-title')) {
-            const menuTitle = document.createElement('div');
-            menuTitle.classList.add('mobile-menu-title');
-            menuTitle.innerHTML = '<h2>메뉴</h2>';
-            nav.insertBefore(menuTitle, nav.firstChild);
-        }
-        
-        // 토글 버튼 클릭 이벤트
-        toggleBtn.addEventListener('click', function() {
-            nav.classList.add('active');
-            toggleBtn.setAttribute('aria-expanded', 'true');
-            closeBtn.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
-        });
-        
-        // 닫기 버튼 클릭 이벤트
-        closeBtn.addEventListener('click', function() {
-            nav.classList.remove('active');
-            toggleBtn.setAttribute('aria-expanded', 'false');
-            closeBtn.style.display = 'none';
-            document.body.style.overflow = ''; // 스크롤 다시 활성화
-        });
-        
-        // 메뉴 항목 클릭 시 메뉴 닫기
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                nav.classList.remove('active');
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                closeBtn.style.display = 'none';
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // 창 크기가 변경될 때 모바일 메뉴 상태 조정
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 992 && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                closeBtn.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        });
-    }
-    
-    // 부드러운 스크롤 기능
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // 모바일 메뉴가 열려있으면 닫기
-                const nav = document.querySelector('nav');
-                const toggleBtn = document.querySelector('.menu-toggle');
-                if (nav && nav.classList.contains('active') && toggleBtn) {
-                    nav.classList.remove('active');
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                    toggleBtn.setAttribute('aria-label', '메뉴 열기');
-                    toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
-                }
-            }
-        });
-    });
-    
-    // 현재 활성화된 페이지에 대한 네비게이션 항목 강조
-    function highlightCurrentNavItem() {
-        const currentPath = window.location.pathname;
-        const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-        
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            if (link.getAttribute('href') === filename) {
-                link.classList.add('active');
-                link.setAttribute('aria-current', 'page');
-            }
-        });
-    }
-    
     // 이미지에 alt 속성 추가 확인
     function checkImagesAlt() {
         document.querySelectorAll('img:not([alt])').forEach(img => {
@@ -297,29 +327,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // 소셜 미디어 공유 버튼 생성
         createSocialShareButtons();
         
-        // 모바일 메뉴 토글 버튼 설정
-        setupMobileMenu();
-        
-        // 네비게이션 현재 페이지 하이라이트
-        highlightCurrentNavItem();
-        
         // 이미지 alt 속성 체크
         checkImagesAlt();
+        
+        // 모바일 메뉴와 네비게이션 초기화는 이미 로드 전에 수행
     }
 
     // 페이지 로드 직후 초기화 시도
     initializeAfterHeaderLoad();
 
-    // 헤더 로딩이 완료된 후에 모바일 메뉴 재설정 (include.js에서 발생하는 이벤트)
+    // 헤더 로딩이 완료된 후에 초기화 재시도 (include.js에서 발생하는 이벤트)
     document.addEventListener('headerLoaded', initializeAfterHeaderLoad);
-    
-    // header.html 내부에서 발생하는 이벤트도 감지
     document.addEventListener('headerReady', initializeAfterHeaderLoad);
-
-    // 만약 500ms 이후에도 모바일 메뉴가 없다면 강제 초기화
-    setTimeout(() => {
-        if (document.querySelector('header') && !document.querySelector('.menu-toggle')) {
-            initializeAfterHeaderLoad();
-        }
-    }, 500);
 }); 
