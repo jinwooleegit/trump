@@ -243,7 +243,8 @@ nav ul li a:hover {
 
 blockquote {
     font-size: 1.4rem;
-    font-style: italic;
+    font-family: 'Noto Serif KR', serif;
+    font-style: normal;
     line-height: 1.5;
     position: relative;
     padding-left: 20px;
@@ -354,6 +355,8 @@ cite {
 
 .quote-slide blockquote {
     font-size: 1.8rem;
+    font-family: 'Noto Serif KR', serif;
+    font-style: normal;
     border: none;
     padding: 0;
     color: var(--secondary-color);
