@@ -1,0 +1,477 @@
+/* 기본 설정 */
+:root {
+    --primary-color: #b22234; /* 미국 국기의 빨간색 */
+    --secondary-color: #3c3b6e; /* 미국 국기의 파란색 */
+    --accent-color: #e6c200; /* 금색 강조 */
+    --bg-color: #ffffff;
+    --bg-alt-color: #f0f4f8; /* 약간 더 선명한 배경색 */
+    --text-color: #333;
+    --light-text-color: #777;
+    --border-color: #d8e2ef;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+    --header-bg: #ffffff; /* 헤더 배경색을 흰색으로 */
+    --header-text: #3c3b6e; /* 헤더 텍스트 색상을 파란색으로 */
+    --footer-bg: #f0f4f8; /* 푸터 배경색을 밝은 회색으로 */
+    --footer-text: #333; /* 푸터 텍스트 색상을 어두운 회색으로 */
+    --quote-bg: #fff; /* 인용구 배경색을 흰색으로 */
+    --quote-border: #b22234; /* 인용구 테두리 색상을 빨간색으로 */
+}
+
+/* 유틸리티 클래스 */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-right: 20px;
+}
+
+header .subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--header-text);
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+nav ul li a:hover {
+    background-color: rgba(60, 59, 110, 0.1);
+    color: var(--primary-color);
+}
+
+/* 히어로 섹션 */
+#hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://source.unsplash.com/featured/?trump,speech') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* 섹션 스타일 */
+.section {
+    padding: 80px 0;
+}
+
+.bg-alt {
+    background-color: var(--bg-alt-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    position: relative;
+    color: var(--secondary-color);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+}
+
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.text-content h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.text-content p {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* 인용구 박스 */
+.quote-box {
+    flex: 0 0 350px;
+    background-color: var(--quote-bg);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+blockquote {
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 20px;
+    border-left: 4px solid var(--quote-border);
+}
+
+cite {
+    display: block;
+    margin-top: 15px;
+    font-size: 1rem;
+    opacity: 0.8;
+    font-style: normal;
+    text-align: right;
+}
+
+/* 카드 스타일 */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    transition: var(--transition);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+/* 공약 섹션 */
+.campaign-promises {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.promise {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    align-items: flex-start;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.promise:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.promise-icon {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-right: 15px;
+    padding-top: 5px;
+}
+
+.promise-content h3 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+/* 명언 슬라이더 */
+.quotes-slider {
+    background-color: white;
+    color: var(--text-color);
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote-slide {
+    display: none;
+}
+
+.quote-slide:first-child {
+    display: block;
+}
+
+.quote-slide blockquote {
+    font-size: 1.8rem;
+    border: none;
+    padding: 0;
+    color: var(--secondary-color);
+}
+
+/* 푸터 */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 60px 0 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: var(--text-color);
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+        margin-left: 0;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .card, .promise {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    
+    .section-content {
+        flex-direction: column;
+    }
+    
+    .quote-box {
+        flex: 1 1 100%;
+        margin-top: 20px;
+    }
+}
+
+/* 인용구 슬라이더 애니메이션 */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.quote-slide {
+    animation: fadeInOut 10s infinite;
+} 
