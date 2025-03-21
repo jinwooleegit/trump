@@ -473,133 +473,150 @@ footer {
     z-index: 1000;
 }
 
-.menu-close-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 20px;
-    background-color: var(--primary-color);
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1001;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.menu-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.menu-title {
-    color: white;
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
 /* 반응형 설정 */
 @media (max-width: 992px) {
     header .container {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center; /* 중앙 정렬 변경 */
+        position: relative;
+        padding: 0 50px; /* 양쪽 여백 동일하게 */
+        align-items: center; /* 수직 중앙 정렬 */
     }
     
     header h1 {
-        margin-bottom: 20px;
+        margin: 15px 0; /* 제목의 상하 여백 조정 */
+        font-size: 1.5rem; /* 모바일에서 제목 크기 조정 */
+        text-align: center; /* 제목 중앙 정렬 */
     }
     
-    nav ul {
-        margin-top: 15px;
-        justify-content: center;
-    }
-    
-    nav ul li {
-        margin: 5px;
-    }
-    
-    .hero h2 {
-        font-size: 36px;
-    }
-    
-    .hero p {
-        font-size: 18px;
-    }
-
     .menu-toggle {
         display: block;
         position: absolute;
-        top: 25px;
-        right: 20px;
-    }
-    
-    header .container {
-        flex-direction: row;
-        justify-content: space-between;
-        position: relative;
-        padding-right: 50px; /* 우측에 토글 버튼을 위한 공간 확보 */
+        top: 50%; /* 버튼 수직 중앙 정렬 */
+        transform: translateY(-50%); /* 정확한 중앙 위치로 조정 */
+        right: 15px;
+        margin: 0; /* 여백 제거 */
     }
     
     nav {
-        position: fixed; /* absolute 대신 fixed 사용하여 전체 화면에 나타나도록 */
+        position: fixed; /* absolute 대신 fixed 사용 */
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%; /* 전체 높이 설정 */
-        background-color: var(--secondary-color);
+        height: 100vh; /* 전체 화면 높이 */
+        background-color: rgba(0, 0, 0, 0.95); /* 배경 어둡게 */
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease;
+        transition: all 0.3s ease; /* opacity도 함께 트랜지션 */
         z-index: 999;
+        text-align: center; /* 텍스트 중앙 정렬 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* 수직 중앙 정렬 */
+        opacity: 0;
+        visibility: hidden;
     }
     
     nav.active {
-        max-height: 100vh; /* 뷰포트 높이의 100%로 설정 */
-        overflow-y: auto; /* 필요시 스크롤 가능하도록 */
+        max-height: 100vh; /* 전체 화면 높이로 설정 */
+        opacity: 1;
+        visibility: visible;
+        overflow-y: auto; /* 스크롤 가능하도록 설정 */
+        padding: 80px 0 20px; /* 상단에 타이틀을 위한 여백 확보 */
     }
     
     nav ul {
         flex-direction: column;
-        padding: 20px 0 50px; /* 상단 여백 감소, 하단 여백 증가 */
-        margin: 0;
-        height: auto;
+        padding: 10px 0;
+        margin: 0 auto; /* 중앙 정렬 */
+        width: 100%;
+        max-width: 300px; /* 최대 너비 제한 */
+        overflow-y: auto; /* 내용이 많을 경우 스크롤 */
     }
     
     nav ul li {
-        margin: 5px 0;
+        margin: 10px 0;
         width: 100%;
         text-align: center;
     }
     
     nav ul li a {
         display: block;
-        padding: 18px 15px;
+        padding: 10px;
         border-radius: 0;
         color: var(--light-text) !important; /* 강제 적용 */
-        font-size: 1.2rem; /* 폰트 크기 증가 */
+        font-size: 1.2rem; /* 글꼴 크기 증가 */
+        transition: color 0.2s ease; /* 부드러운 색상 변화 */
     }
     
     nav ul li a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--primary-color) !important;
+    }
+    
+    /* 닫기 버튼 스타일 */
+    .menu-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: var(--light-text);
+        cursor: pointer;
+        z-index: 1001;
+        padding: 5px;
+    }
+    
+    .menu-close:hover {
+        color: var(--primary-color);
+    }
+    
+    /* 모바일 메뉴 타이틀 */
+    .mobile-menu-title {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: var(--light-text);
+    }
+    
+    .mobile-menu-title h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: var(--primary-color);
     }
 }
 
 @media (max-width: 768px) {
     header .container {
-        flex-direction: column;
-        text-align: center;
+        padding: 10px 15px;
     }
     
-    header nav ul {
-        flex-direction: column;
-        padding: 15px 0;
+    header h1 {
+        font-size: 1.3rem;
+        margin: 12px 0;
+    }
+    
+    nav.active {
+        padding: 70px 0 20px; /* 모바일에서 상단 여백 조정 */
+    }
+    
+    nav ul {
+        max-width: 280px; /* 더 작은 화면에서 너비 조정 */
     }
     
     header nav ul li {
         margin: 5px 0;
+    }
+    
+    header nav ul li a {
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .mobile-menu-title h2 {
+        font-size: 1.3rem;
     }
     
     .hero-content h2 {

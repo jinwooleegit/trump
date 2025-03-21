@@ -114,40 +114,50 @@ document.addEventListener('DOMContentLoaded', function() {
         
         headerContainer.appendChild(toggleBtn);
         
-        // 모바일 메뉴 닫기 버튼 추가
+        // 닫기 버튼 추가
         const closeBtn = document.createElement('button');
         closeBtn.classList.add('menu-close');
         closeBtn.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
         closeBtn.setAttribute('aria-label', '메뉴 닫기');
+        closeBtn.style.display = 'none'; // 초기에는 숨김
         
-        // nav 요소 상단에 닫기 버튼 추가
-        const closeContainer = document.createElement('div');
-        closeContainer.classList.add('menu-close-container');
-        closeContainer.appendChild(closeBtn);
+        // nav에 닫기 버튼 추가
+        if (!nav.querySelector('.menu-close')) {
+            nav.appendChild(closeBtn);
+        }
         
-        // 제목 추가
-        const menuTitle = document.createElement('h2');
-        menuTitle.textContent = '트럼프의 말과 비전';
-        menuTitle.classList.add('menu-title');
-        closeContainer.appendChild(menuTitle);
+        // 모바일 메뉴 타이틀 추가
+        if (!nav.querySelector('.mobile-menu-title')) {
+            const menuTitle = document.createElement('div');
+            menuTitle.classList.add('mobile-menu-title');
+            menuTitle.innerHTML = '<h2>트럼프의 말과 비전</h2>';
+            nav.insertBefore(menuTitle, nav.firstChild);
+        }
         
-        // nav의 첫 번째 자식으로 삽입
-        nav.insertBefore(closeContainer, nav.firstChild);
-        
-        // 토글 버튼 이벤트
+        // 토글 버튼 클릭 이벤트
         toggleBtn.addEventListener('click', function() {
             nav.classList.add('active');
             toggleBtn.setAttribute('aria-expanded', 'true');
+            closeBtn.style.display = 'block';
             document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
         });
         
-        // 닫기 버튼 이벤트
+        // 닫기 버튼 클릭 이벤트
         closeBtn.addEventListener('click', function() {
             nav.classList.remove('active');
             toggleBtn.setAttribute('aria-expanded', 'false');
-            toggleBtn.setAttribute('aria-label', '메뉴 열기');
-            toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
-            document.body.style.overflow = ''; // 배경 스크롤 복원
+            closeBtn.style.display = 'none';
+            document.body.style.overflow = ''; // 스크롤 다시 활성화
+        });
+        
+        // 메뉴 항목 클릭 시 메뉴 닫기
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            });
         });
         
         // 창 크기가 변경될 때 모바일 메뉴 상태 조정
@@ -155,9 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth > 992 && nav.classList.contains('active')) {
                 nav.classList.remove('active');
                 toggleBtn.setAttribute('aria-expanded', 'false');
-                toggleBtn.setAttribute('aria-label', '메뉴 열기');
-                toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
-                document.body.style.overflow = ''; // 배경 스크롤 복원
+                closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
             }
         });
     }
