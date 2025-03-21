@@ -30,20 +30,7 @@
  * - responsive.css: 다양한 화면 크기에 대응하는 미디어 쿼리
  */
 
-/* 기본 스타일 설정 */
-:root {
-    --primary-color: #E91E63;
-    --secondary-color: #333;
-    --accent-color: #03A9F4;
-    --text-color: #333;
-    --light-text: #fff;
-    --light-bg: #f9f9f9;
-    --dark-bg: #222;
-    --border-color: #e0e0e0;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --section-padding: 80px 0;
-}
-
+/* 기본 스타일 설정 - base.css에서 이미 정의된 변수는 제거합니다 */
 * {
     margin: 0;
     padding: 0;
@@ -54,7 +41,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: #fff;
+    background-color: var(--body-bg);
 }
 
 .container {
@@ -303,7 +290,7 @@ blockquote cite {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
@@ -352,7 +339,7 @@ blockquote cite {
 }
 
 .quote-slide {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 30px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -370,7 +357,7 @@ blockquote cite {
 .promise {
     display: flex;
     align-items: flex-start;
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -630,4 +617,40 @@ footer {
     .footer-section {
         min-width: 100%;
     }
+}
+
+/* 다크모드에서 텍스트 가시성 향상 */
+[data-theme="dark"] blockquote cite,
+[data-theme="dark"] .promise-content p,
+[data-theme="dark"] .footer-section p,
+[data-theme="dark"] .footer-section ul li a,
+[data-theme="dark"] .footer-bottom p {
+    opacity: 0.95;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .quote-slide,
+[data-theme="dark"] .promise {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .promise:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .promise-content h3,
+[data-theme="dark"] .text-content h3 {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .card p,
+[data-theme="dark"] .promise-content p,
+[data-theme="dark"] .text-content p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] blockquote {
+    color: var(--text-color);
 } 

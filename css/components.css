@@ -377,6 +377,36 @@ blockquote cite {
     display: block;
 }
 
+/* 연설문 발췌 스타일 */
+.speech-excerpt {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+
+.speech-excerpt h4 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--secondary-color);
+}
+
+.speech-excerpt blockquote {
+    font-style: italic;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.speech-excerpt blockquote:last-child {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 768px) {
     .timeline::after {
         left: 31px;
@@ -455,4 +485,27 @@ blockquote cite {
     border-radius: 4px;
     font-weight: 500;
     margin-bottom: 10px;
+}
+
+/* 더 보기 링크 스타일 */
+.more-link {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.more-link i {
+    font-size: 0.8em;
+    margin-left: 3px;
+    transition: transform 0.3s ease;
+}
+
+.more-link:hover {
+    color: var(--accent-color);
+}
+
+.more-link:hover i {
+    transform: translateX(3px);
 } 
