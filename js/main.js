@@ -123,20 +123,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // nav 요소 상단에 닫기 버튼 추가
         const closeContainer = document.createElement('div');
         closeContainer.classList.add('menu-close-container');
-        
-        // 왼쪽 공간 확보를 위한 빈 요소
-        const spacerDiv = document.createElement('div');
-        spacerDiv.classList.add('menu-spacer');
-        closeContainer.appendChild(spacerDiv);
+        closeContainer.appendChild(closeBtn);
         
         // 제목 추가
         const menuTitle = document.createElement('h2');
         menuTitle.textContent = '트럼프의 말과 비전';
         menuTitle.classList.add('menu-title');
         closeContainer.appendChild(menuTitle);
-        
-        // 닫기 버튼 추가
-        closeContainer.appendChild(closeBtn);
         
         // nav의 첫 번째 자식으로 삽입
         nav.insertBefore(closeContainer, nav.firstChild);

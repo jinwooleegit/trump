@@ -239,6 +239,8 @@ nav ul li a:hover {
     border-radius: 10px;
     border: 1px solid var(--border-color);
     box-shadow: var(--card-shadow);
+    font-family: 'Noto Serif KR', serif;
+    font-style: normal;
 }
 
 blockquote {
@@ -347,6 +349,7 @@ cite {
 
 .quote-slide {
     display: none;
+    font-style: normal;
 }
 
 .quote-slide:first-child {

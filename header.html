@@ -14,8 +14,7 @@
     <header>
         <div class="container">
             <h1><span class="text-primary">트럼프</span>의 말과 비전</h1>
-            <p class="subtitle">45대, 47대 미국 대통령의 연설과 철학</p>
-            <nav>
+            <nav role="navigation" aria-label="메인 메뉴">
                 <ul>
                     <li><a href="index.html" id="nav-home">홈</a></li>
                     <li><a href="political-philosophy.html" id="nav-philosophy">정치 철학</a></li>
@@ -23,11 +22,17 @@
                     <li><a href="foreign-policy.html" id="nav-foreign">외교 전략</a></li>
                     <li><a href="social-policy.html" id="nav-social">사회 정책</a></li>
                     <li><a href="leadership.html" id="nav-leadership">리더십</a></li>
+                    <li><a href="timeline.html" id="nav-timeline">연대표</a></li>
+                    <li><a href="speeches.html" id="nav-speeches">연설문</a></li>
                     <li><a href="personal-philosophy.html" id="nav-personal">개인 철학</a></li>
                     <li><a href="campaign-2024.html" id="nav-campaign">2024년 공약</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    <script>
+        // 헤더가 로드되었음을 알리는 이벤트 발생
+        document.dispatchEvent(new CustomEvent('headerReady'));
+    </script>
 </body>
 </html> 

@@ -57,6 +57,8 @@
     border-radius: 10px;
     box-shadow: var(--shadow);
     position: relative;
+    font-family: 'Noto Serif KR', serif;
+    font-style: normal;
 }
 
 .quote-box:before {
@@ -68,11 +70,13 @@
     color: var(--primary-color);
     opacity: 0.2;
     line-height: 1;
+    font-style: normal;
 }
 
 blockquote {
     font-size: 20px;
-    font-style: italic;
+    font-style: normal;
+    font-family: 'Noto Serif KR', serif;
     margin-bottom: 15px;
     position: relative;
     z-index: 1;
@@ -142,6 +146,7 @@ blockquote cite {
     box-shadow: var(--shadow);
     margin-bottom: 20px;
     position: relative;
+    font-family: 'Noto Serif KR', serif;
 }
 
 /* 2024 공약 스타일 */
@@ -226,7 +231,8 @@ blockquote cite {
     border-left: 4px solid var(--primary-color);
     padding: 20px;
     margin: 20px 0;
-    font-style: italic;
+    font-style: normal;
+    font-family: 'Noto Serif KR', serif;
 }
 
 .breadcrumb {
@@ -393,7 +399,8 @@ blockquote cite {
 }
 
 .speech-excerpt blockquote {
-    font-style: italic;
+    font-style: normal;
+    font-family: 'Noto Serif KR', serif;
     margin-bottom: 15px;
     padding: 10px 15px;
     background-color: rgba(255, 255, 255, 0.7);
