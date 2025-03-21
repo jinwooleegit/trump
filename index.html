@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script>
+        // 페이지 로딩 시간 측정 시작
+        const pageStartTime = performance.now();
+        let headerLoadTime;
+        
+        // 헤더 로딩 완료 이벤트 리스너
+        document.addEventListener('headerLoaded', function() {
+            headerLoadTime = performance.now() - pageStartTime;
+            console.log('헤더 로딩 시간: ' + headerLoadTime.toFixed(2) + 'ms');
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트럼프의 말과 비전</title>
@@ -161,5 +172,17 @@
 
     <script src="js/include.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // 페이지 완전 로딩 시간 측정
+        window.addEventListener('load', function() {
+            const pageLoadTime = performance.now() - pageStartTime;
+            console.log('페이지 총 로딩 시간: ' + pageLoadTime.toFixed(2) + 'ms');
+            
+            // 헤더 로딩 시간이 있으면 출력
+            if(headerLoadTime) {
+                console.log('헤더가 총 로딩 시간의 ' + ((headerLoadTime / pageLoadTime) * 100).toFixed(2) + '% 차지');
+            }
+        });
+    </script>
 </body>
 </html> 
