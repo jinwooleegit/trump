@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>경제 비전 - 일자리와 번영 | 트럼프의 말과 비전</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -12,7 +12,32 @@
             height: 40vh;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('images/trump-background.jpg') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            margin-top: 70px;
+            text-align: center;
         }
+        
+        .detail-hero h2 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .detail-hero p {
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .article-container {
             max-width: 800px;
             margin: 0 auto;
@@ -37,7 +62,8 @@
         }
         .source {
             font-size: 0.9rem;
-            color: var(--light-text-color);
+            color: var(--text-color);
+            opacity: 0.7;
             margin-top: 30px;
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
@@ -46,14 +72,14 @@
             text-decoration: underline;
         }
         .quote {
-            background-color: var(--bg-alt-color);
+            background-color: var(--light-bg);
             border-left: 4px solid var(--primary-color);
             padding: 20px;
             margin: 20px 0;
             font-style: italic;
         }
         .breadcrumb {
-            background-color: var(--bg-alt-color);
+            background-color: var(--light-bg);
             padding: 10px 20px;
             border-radius: 5px;
             margin-bottom: 30px;
@@ -63,7 +89,8 @@
         }
         .breadcrumb span {
             margin: 0 5px;
-            color: var(--light-text-color);
+            color: var(--text-color);
+            opacity: 0.7;
         }
         .data-table {
             width: 100%;
@@ -76,7 +103,7 @@
             text-align: left;
         }
         .data-table th {
-            background-color: var(--bg-alt-color);
+            background-color: var(--light-bg);
             color: var(--secondary-color);
         }
         .data-table tr:nth-child(even) {
@@ -91,14 +118,14 @@
             <p class="subtitle">45대, 47대 미국 대통령의 연설과 철학</p>
             <nav>
                 <ul>
-                    <li><a href="index.html">홈</a></li>
-                    <li><a href="political-philosophy.html">정치 철학</a></li>
-                    <li><a href="economic-vision.html" class="active">경제 비전</a></li>
-                    <li><a href="foreign-policy.html">외교 전략</a></li>
-                    <li><a href="social-policy.html">사회 정책</a></li>
-                    <li><a href="leadership.html">리더십</a></li>
-                    <li><a href="personal-philosophy.html">개인 철학</a></li>
-                    <li><a href="campaign-2024.html">2024년 공약</a></li>
+                    <li><a href="index.html" id="nav-home">홈</a></li>
+                    <li><a href="political-philosophy.html" id="nav-philosophy">정치 철학</a></li>
+                    <li><a href="economic-vision.html" id="nav-economic" class="active">경제 비전</a></li>
+                    <li><a href="foreign-policy.html" id="nav-foreign">외교 전략</a></li>
+                    <li><a href="social-policy.html" id="nav-social">사회 정책</a></li>
+                    <li><a href="leadership.html" id="nav-leadership">리더십</a></li>
+                    <li><a href="personal-philosophy.html" id="nav-personal">개인 철학</a></li>
+                    <li><a href="campaign-2024.html" id="nav-campaign">2024년 공약</a></li>
                 </ul>
             </nav>
         </div>
@@ -261,6 +288,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html> 
