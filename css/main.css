@@ -1,3 +1,35 @@
+/* 
+ * CSS 최적화 방법:
+ * 1. 모듈화: 다음과 같이 CSS를 여러 파일로 분리할 수 있습니다
+ *    - base.css: 기본 변수, 리셋, 타이포그래피
+ *    - layout.css: 헤더, 푸터, 그리드 시스템
+ *    - components.css: 버튼, 카드, 폼 요소
+ *    - responsive.css: 반응형 미디어 쿼리
+ *
+ * 2. CSS 전처리기 사용: SASS/SCSS를 사용하여 변수, 믹스인, 중첩 선택자 등을 활용
+ *    예: _variables.scss, _header.scss, _footer.scss 등으로 분리
+ *    
+ * 3. CSS-in-JS: React 같은 프레임워크를 사용할 경우 styled-components 고려
+ *
+ * 4. CSS 프레임워크: 필요한 컴포넌트만 가져오는 Bootstrap, Tailwind CSS 등 사용
+ */
+
+/* 분리된 CSS 파일 import */
+@import 'base.css';
+@import 'layout.css';
+@import 'components.css';
+@import 'responsive.css';
+
+/* 
+ * 이제 CSS가 모듈화되어 관리가 더 쉬워졌습니다.
+ * 각 파일은 특정 기능에 집중하고 있어 유지보수가 용이합니다.
+ * 
+ * - base.css: 기본 변수와 리셋 스타일
+ * - layout.css: 페이지 레이아웃 구조 (헤더, 푸터 등)
+ * - components.css: 재사용 가능한 컴포넌트 스타일
+ * - responsive.css: 다양한 화면 크기에 대응하는 미디어 쿼리
+ */
+
 /* 기본 스타일 설정 */
 :root {
     --primary-color: #E91E63;
@@ -235,7 +267,7 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 .quote-box:before {
-    content: """;
+    content: "\201C";
     position: absolute;
     top: 0;
     left: 20px;
