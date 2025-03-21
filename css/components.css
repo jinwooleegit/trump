@@ -96,7 +96,7 @@ blockquote cite {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
@@ -136,7 +136,7 @@ blockquote cite {
 }
 
 .quote-slide {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 30px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -154,7 +154,7 @@ blockquote cite {
 .promise {
     display: flex;
     align-items: flex-start;
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -259,4 +259,200 @@ blockquote cite {
     font-size: 1.2rem;
     opacity: 0.9;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 다크 모드 토글 버튼 */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle i {
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle:hover i {
+    transform: rotate(30deg);
+}
+
+/* 타임라인 스타일 */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--card-bg);
+    border: 4px solid var(--primary-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::after {
+    right: -10px;
+}
+
+.right::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.timeline-content .date {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item.right {
+        left: 0;
+    }
+    
+    .timeline-item.left::after, 
+    .timeline-item.right::after {
+        left: 21px;
+    }
+}
+
+/* 소셜 미디어 공유 버튼 */
+.social-share {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 15px;
+}
+
+.social-share-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.social-share-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-share-button.facebook {
+    background-color: #3b5998;
+}
+
+.social-share-button.twitter {
+    background-color: #1da1f2;
+}
+
+.social-share-button.linkedin {
+    background-color: #0077b5;
+}
+
+.social-share-button.email {
+    background-color: #dd4b39;
+}
+
+.social-share-button i {
+    font-size: 18px;
+}
+
+/* 날짜 스타일 for 타임라인 */
+.date {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 10px;
 } 

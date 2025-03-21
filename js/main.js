@@ -33,6 +33,69 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // 다크 모드 토글 기능
+    const createThemeToggle = () => {
+        const button = document.createElement('button');
+        button.classList.add('theme-toggle');
+        button.setAttribute('aria-label', '테마 변경');
+        button.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+        document.body.appendChild(button);
+
+        // 저장된 테마가 있으면 적용
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                button.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+            }
+        }
+
+        // 테마 토글 이벤트 리스너
+        button.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // 아이콘 변경
+            if (newTheme === 'dark') {
+                button.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+            } else {
+                button.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+            }
+        });
+    };
+
+    // 다크 모드 토글 생성
+    createThemeToggle();
+
+    // 타임라인 애니메이션
+    const animateTimeline = () => {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        if (timelineItems.length === 0) return;
+        
+        const checkIfInView = () => {
+            timelineItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                
+                if (rect.top <= windowHeight * 0.8) {
+                    item.classList.add('visible');
+                }
+            });
+        };
+        
+        // 초기 체크
+        checkIfInView();
+        
+        // 스크롤 시 체크
+        window.addEventListener('scroll', checkIfInView);
+    };
+    
+    // 타임라인 애니메이션 초기화
+    animateTimeline();
+
     // 모바일 메뉴 토글 기능 개선
     const toggleBtn = document.createElement('button');
     toggleBtn.classList.add('menu-toggle');
@@ -104,4 +167,82 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('img:not([alt])').forEach(img => {
         console.warn('이미지에 alt 속성이 없습니다:', img);
     });
+
+    // 소셜 미디어 공유 버튼 생성 및 이벤트 연결
+    function createSocialShareButtons() {
+        // 모든 콘텐츠 페이지의 article-section에 소셜 미디어 공유 버튼 추가
+        const articleSections = document.querySelectorAll('.article-section');
+        
+        if (articleSections.length === 0) return;
+        
+        // 마지막 아티클 섹션 다음에 소셜 공유 버튼 추가
+        const lastSection = articleSections[articleSections.length - 1];
+        
+        const socialShareDiv = document.createElement('div');
+        socialShareDiv.className = 'social-share';
+        
+        const pageTitle = document.title;
+        const pageUrl = window.location.href;
+        
+        // 페이스북 공유
+        const facebookBtn = document.createElement('a');
+        facebookBtn.className = 'social-share-button facebook';
+        facebookBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+        facebookBtn.target = '_blank';
+        facebookBtn.rel = 'noopener noreferrer';
+        facebookBtn.setAttribute('aria-label', '페이스북에 공유하기');
+        facebookBtn.innerHTML = '<i class="fab fa-facebook-f"></i>';
+        
+        // 트위터 공유
+        const twitterBtn = document.createElement('a');
+        twitterBtn.className = 'social-share-button twitter';
+        twitterBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(pageTitle)}&url=${encodeURIComponent(pageUrl)}`;
+        twitterBtn.target = '_blank';
+        twitterBtn.rel = 'noopener noreferrer';
+        twitterBtn.setAttribute('aria-label', '트위터에 공유하기');
+        twitterBtn.innerHTML = '<i class="fab fa-twitter"></i>';
+        
+        // 링크드인 공유
+        const linkedinBtn = document.createElement('a');
+        linkedinBtn.className = 'social-share-button linkedin';
+        linkedinBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+        linkedinBtn.target = '_blank';
+        linkedinBtn.rel = 'noopener noreferrer';
+        linkedinBtn.setAttribute('aria-label', '링크드인에 공유하기');
+        linkedinBtn.innerHTML = '<i class="fab fa-linkedin-in"></i>';
+        
+        // 이메일 공유
+        const emailBtn = document.createElement('a');
+        emailBtn.className = 'social-share-button email';
+        emailBtn.href = `mailto:?subject=${encodeURIComponent(pageTitle)}&body=${encodeURIComponent('확인해 보세요: ' + pageUrl)}`;
+        emailBtn.setAttribute('aria-label', '이메일로 공유하기');
+        emailBtn.innerHTML = '<i class="fas fa-envelope"></i>';
+        
+        socialShareDiv.appendChild(facebookBtn);
+        socialShareDiv.appendChild(twitterBtn);
+        socialShareDiv.appendChild(linkedinBtn);
+        socialShareDiv.appendChild(emailBtn);
+        
+        // 아티클 섹션 다음에 삽입
+        if (lastSection.nextElementSibling) {
+            lastSection.parentNode.insertBefore(socialShareDiv, lastSection.nextElementSibling);
+        } else {
+            lastSection.parentNode.appendChild(socialShareDiv);
+        }
+    }
+
+    // 소셜 미디어 공유 버튼 생성
+    createSocialShareButtons();
+
+    // 인용구 슬라이더 설정
+    setupQuoteSlider();
+
+    // 모바일 메뉴 토글 버튼 설정
+    setupMobileMenu();
+
+    // 네비게이션 현재 페이지 하이라이트
+    highlightCurrentNavItem();
+
+    // 이미지 alt 속성 체크
+    checkImagesAlt();
 }); 
