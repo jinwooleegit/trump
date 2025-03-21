@@ -126,14 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.appendChild(closeBtn);
         }
         
-        // 모바일 메뉴 타이틀 추가
-        if (!nav.querySelector('.mobile-menu-title')) {
-            const menuTitle = document.createElement('div');
-            menuTitle.classList.add('mobile-menu-title');
-            menuTitle.innerHTML = '<h2>트럼프의 말과 비전</h2>';
-            nav.insertBefore(menuTitle, nav.firstChild);
-        }
-        
         // 토글 버튼 클릭 이벤트
         toggleBtn.addEventListener('click', function() {
             nav.classList.add('active');

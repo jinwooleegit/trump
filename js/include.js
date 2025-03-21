@@ -2,9 +2,11 @@
  * header.html과 footer.html을 로드하는 유틸리티 함수
  */
 
+// 헤더 즉시 로드 시작 - DOMContentLoaded 이벤트를 기다리지 않고 실행
+loadHeader();
+
 document.addEventListener('DOMContentLoaded', function() {
-    // 헤더와 푸터 로드
-    loadHeader();
+    // 푸터만 여기서 로드
     loadFooter();
 });
 
@@ -15,7 +17,11 @@ function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (!headerPlaceholder) return;
 
-    fetch('header.html')
+    fetch('header.html', {
+        method: 'GET',
+        cache: 'force-cache', // 캐싱 활성화
+        priority: 'high' // 높은 우선순위 설정
+    })
         .then(response => response.text())
         .then(data => {
             headerPlaceholder.innerHTML = data;
@@ -36,7 +42,10 @@ function loadFooter() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (!footerPlaceholder) return;
 
-    fetch('footer.html')
+    fetch('footer.html', {
+        method: 'GET',
+        cache: 'force-cache' // 캐싱 활성화
+    })
         .then(response => response.text())
         .then(data => {
             footerPlaceholder.innerHTML = data;
@@ -70,7 +79,10 @@ function highlightCurrentPage() {
 
 // HTML 조각 가져오는 유틸리티 함수
 function fetchHtmlFragment(url) {
-    return fetch(url)
+    return fetch(url, {
+        method: 'GET',
+        cache: 'force-cache' // 캐싱 활성화
+    })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error loading ${url}: ${response.statusText}`);
