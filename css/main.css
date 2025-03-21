@@ -526,12 +526,47 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .section-content {
+    header .container {
         flex-direction: column;
+        text-align: center;
     }
     
-    .text-content, .quote-box {
-        width: 100%;
+    header nav ul {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+    
+    header nav ul li {
+        margin: 5px 0;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .campaign-promises {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .article-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .quote {
+        padding: 15px;
     }
     
     .hero h2 {
@@ -541,22 +576,26 @@ footer {
     .section-title {
         font-size: 26px;
     }
-    
-    .footer-section {
-        min-width: 100%;
-    }
 }
 
 @media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-content {
+        flex-direction: column;
+    }
+    
+    .text-content, .quote-box {
+        width: 100%;
+    }
+    
     .hero h2 {
         font-size: 24px;
     }
     
-    .hero p {
-        font-size: 16px;
-    }
-    
-    blockquote {
-        font-size: 18px;
+    .footer-section {
+        min-width: 100%;
     }
 } 

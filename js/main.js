@@ -33,10 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 모바일 메뉴 토글 기능
+    // 모바일 메뉴 토글 기능 개선
     const toggleBtn = document.createElement('button');
     toggleBtn.classList.add('menu-toggle');
-    toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+    toggleBtn.setAttribute('aria-label', '메뉴 열기');
+    toggleBtn.setAttribute('aria-expanded', 'false');
     
     const nav = document.querySelector('nav');
     const headerContainer = document.querySelector('header .container');
@@ -45,12 +47,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     toggleBtn.addEventListener('click', function() {
         nav.classList.toggle('active');
+        const isExpanded = nav.classList.contains('active');
+        toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        toggleBtn.setAttribute('aria-label', isExpanded ? '메뉴 닫기' : '메뉴 열기');
+        toggleBtn.innerHTML = isExpanded ? '<i class="fas fa-times" aria-hidden="true"></i>' : '<i class="fas fa-bars" aria-hidden="true"></i>';
     });
     
     // 창 크기가 변경될 때 모바일 메뉴 상태 조정
     window.addEventListener('resize', function() {
         if (window.innerWidth > 992 && nav.classList.contains('active')) {
             nav.classList.remove('active');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('aria-label', '메뉴 열기');
+            toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
         }
     });
     
@@ -72,8 +81,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 모바일 메뉴가 열려있으면 닫기
                 if (nav.classList.contains('active')) {
                     nav.classList.remove('active');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    toggleBtn.setAttribute('aria-label', '메뉴 열기');
+                    toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
                 }
             }
         });
+    });
+    
+    // 현재 활성화된 페이지에 대한 네비게이션 항목 강조
+    const currentPath = window.location.pathname;
+    const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        if (link.getAttribute('href') === filename) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+    
+    // 이미지에 alt 속성 추가 확인
+    document.querySelectorAll('img:not([alt])').forEach(img => {
+        console.warn('이미지에 alt 속성이 없습니다:', img);
     });
 }); 
