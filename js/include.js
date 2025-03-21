@@ -2,12 +2,18 @@
  * header.html과 footer.html을 로드하는 유틸리티 함수
  */
 
-// 헤더 즉시 로드 시작 - DOMContentLoaded 이벤트를 기다리지 않고 실행
-loadHeader();
-
+// 헤더 로드 처리 시작 - DOMContentLoaded 이벤트를 기다리지 않고 실행
 document.addEventListener('DOMContentLoaded', function() {
-    // 푸터만 여기서 로드
+    // 푸터 로드
     loadFooter();
+    
+    // 인라인 헤더가 없는 경우에만 헤더를 로드합니다
+    if (document.getElementById('header-placeholder')) {
+        loadHeader();
+    } else {
+        // 이미 인라인 헤더가 있는 경우 현재 페이지 하이라이트만 처리
+        highlightCurrentPage();
+    }
 });
 
 /**

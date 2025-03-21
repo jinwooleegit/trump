@@ -3,10 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 스크롤 이벤트 감지
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
     });
 
@@ -101,16 +103,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // 이미 메뉴 토글 버튼이 있는지 확인
         if (document.querySelector('.menu-toggle')) return;
         
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        if (!header || !nav) return; // 헤더나 네비게이션이 없으면 실행하지 않음
+        
         const toggleBtn = document.createElement('button');
         toggleBtn.classList.add('menu-toggle');
         toggleBtn.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
         toggleBtn.setAttribute('aria-label', '메뉴 열기');
         toggleBtn.setAttribute('aria-expanded', 'false');
         
-        const nav = document.querySelector('nav');
         const headerContainer = document.querySelector('header .container');
         
-        if (!headerContainer || !nav) return;
+        if (!headerContainer) return;
         
         headerContainer.appendChild(toggleBtn);
         
@@ -124,6 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // nav에 닫기 버튼 추가
         if (!nav.querySelector('.menu-close')) {
             nav.appendChild(closeBtn);
+        }
+        
+        // 모바일 메뉴 타이틀 추가
+        if (!nav.querySelector('.mobile-menu-title')) {
+            const menuTitle = document.createElement('div');
+            menuTitle.classList.add('mobile-menu-title');
+            menuTitle.innerHTML = '<h2>메뉴</h2>';
+            nav.insertBefore(menuTitle, nav.firstChild);
         }
         
         // 토글 버튼 클릭 이벤트
@@ -294,21 +307,19 @@ document.addEventListener('DOMContentLoaded', function() {
         checkImagesAlt();
     }
 
-    // 헤더가 로드된 경우 초기화 실행
-    if (document.querySelector('header')) {
-        initializeAfterHeaderLoad();
-    }
+    // 페이지 로드 직후 초기화 시도
+    initializeAfterHeaderLoad();
 
-    // 헤더 로딩이 완료된 후에 모바일 메뉴 설정 (include.js에서 발생하는 이벤트)
+    // 헤더 로딩이 완료된 후에 모바일 메뉴 재설정 (include.js에서 발생하는 이벤트)
     document.addEventListener('headerLoaded', initializeAfterHeaderLoad);
     
     // header.html 내부에서 발생하는 이벤트도 감지
     document.addEventListener('headerReady', initializeAfterHeaderLoad);
 
-    // 만약 1000ms 이후에도 헤더가 로드되지 않았다면 강제 초기화
+    // 만약 500ms 이후에도 모바일 메뉴가 없다면 강제 초기화
     setTimeout(() => {
         if (document.querySelector('header') && !document.querySelector('.menu-toggle')) {
             initializeAfterHeaderLoad();
         }
-    }, 1000);
+    }, 500);
 }); 
