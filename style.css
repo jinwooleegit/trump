@@ -239,13 +239,13 @@ nav ul li a:hover {
     border-radius: 10px;
     border: 1px solid var(--border-color);
     box-shadow: var(--card-shadow);
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
 }
 
 blockquote {
     font-size: 1.4rem;
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     line-height: 1.5;
     position: relative;
@@ -358,7 +358,7 @@ cite {
 
 .quote-slide blockquote {
     font-size: 1.8rem;
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     border: none;
     padding: 0;
@@ -480,4 +480,21 @@ footer {
 
 .quote-slide {
     animation: fadeInOut 10s infinite;
+}
+
+/* 인용문 스타일 */
+blockquote, .quote, .quote-box {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal !important;
+}
+
+.quote-author, blockquote cite {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal !important;
+}
+
+/* 연설문 스타일 */
+.speech-content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal !important;
 } 

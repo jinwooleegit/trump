@@ -4,34 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트럼프의 말과 비전</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css?v=2024032202">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- 페이지별 추가 스타일 시트는 여기에 추가됩니다 -->
+    <!-- 모바일 메뉴를 위한 인라인 스타일 -->
+    <style>
+        /* 모바일 메뉴 토글 버튼 스타일 */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block !important;
+                position: relative !important;
+                background-color: var(--primary-color) !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 4px !important;
+                font-size: 22px !important;
+                padding: 5px 10px !important;
+                cursor: pointer !important;
+                z-index: 1000 !important;
+                line-height: 1.2 !important;
+                width: auto !important;
+                height: auto !important;
+            }
+            
+            .menu-toggle-text {
+                display: none;
+            }
+            
+            /* 모바일 네비게이션 스타일 */
+            #main-nav {
+                position: fixed;
+                top: 0;
+                right: -300px; 
+                width: 280px;
+                height: 100vh;
+                background-color: var(--primary-color);
+                z-index: 999;
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            #main-nav.active {
+                right: 0 !important;
+            }
+            
+            #main-nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            
+            #main-nav ul li {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            #main-nav ul li a {
+                display: block;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                color: white;
+                width: 100%;
+                text-align: left;
+            }
+            
+            #main-nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1><span class="text-primary">트럼프</span></h1>
-            <nav role="navigation" aria-label="메인 메뉴">
+            <h1><a href="index.html">트럼프의 말과 비전</a></h1>
+            
+            <button class="menu-toggle" id="menu-toggle" aria-label="메뉴 토글" aria-expanded="false" data-initialized="true" data-event-attached="true">
+                <span class="menu-toggle-text">메뉴</span>
+            </button>
+            
+            <nav role="navigation" aria-label="메인 메뉴" id="main-nav">
                 <ul>
                     <li><a href="index.html" id="nav-home">홈</a></li>
                     <li><a href="political-philosophy.html" id="nav-philosophy">정치 철학</a></li>
                     <li><a href="economic-vision.html" id="nav-economic">경제 비전</a></li>
-                    <li><a href="foreign-policy.html" id="nav-foreign">외교 전략</a></li>
+                    <li><a href="foreign-policy.html" id="nav-foreign">외교 정책</a></li>
                     <li><a href="social-policy.html" id="nav-social">사회 정책</a></li>
-                    <li><a href="leadership.html" id="nav-leadership">리더십</a></li>
-                    <li><a href="timeline.html" id="nav-timeline">연대표</a></li>
-                    <li><a href="speeches.html" id="nav-speeches">연설문</a></li>
-                    <li><a href="personal-philosophy.html" id="nav-personal">개인 철학</a></li>
-                    <li><a href="campaign-2024.html" id="nav-campaign">2024년 공약</a></li>
+                    <li><a href="leadership.html" id="nav-leadership">리더십 스타일</a></li>
+                    <li><a href="personal-philosophy.html" id="nav-personal">개인적 철학</a></li>
+                    <li><a href="campaign-2024.html" id="nav-campaign">2024 선거 공약</a></li>
+                    <li><a href="speeches.html" id="nav-speeches">주요 연설</a></li>
+                    <li><a href="timeline.html" id="nav-timeline">주요 타임라인</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <script>
-        // 헤더가 로드되었음을 알리는 이벤트 발생
-        document.dispatchEvent(new CustomEvent('headerReady'));
+        // 즉시 실행되는 헤더 초기화 스크립트
+        (function() {
+            // 기존 메뉴 버튼이 있는지 확인
+            const existingButtons = document.querySelectorAll('.menu-toggle');
+            
+            // 이미 버튼이 여러 개 있다면 첫 번째만 남기고 제거
+            if (existingButtons.length > 1) {
+                console.log('중복된 메뉴 토글 버튼 발견. 정리합니다.', existingButtons.length);
+                for (let i = 1; i < existingButtons.length; i++) {
+                    existingButtons[i].parentNode.removeChild(existingButtons[i]);
+                }
+            }
+            
+            // 메뉴 토글 버튼 초기화 - 첫 번째 버튼만 사용
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            
+            if (menuToggle && mainNav) {
+                // 이미 초기화되었는지 확인
+                if (menuToggle.hasAttribute('data-event-attached')) {
+                    console.log('메뉴 토글 버튼이 이미 초기화되었습니다.');
+                    return;
+                }
+                
+                // 모바일 메뉴 토글 이벤트
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // 네비게이션과 버튼에 active 클래스 토글
+                    mainNav.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    
+                    // aria-expanded 속성 업데이트
+                    const isExpanded = mainNav.classList.contains('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                });
+                
+                // 문서 클릭 시 메뉴 닫기
+                document.addEventListener('click', function(e) {
+                    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target) && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // 화면 크기에 따라 토글 버튼 표시/숨김 설정
+                function updateMenuToggleVisibility() {
+                    if (window.innerWidth <= 992) {
+                        menuToggle.style.display = 'block';
+                    } else {
+                        menuToggle.style.display = 'none';
+                        // 데스크톱 모드에서는 메뉴가 항상 표시되도록 active 클래스 제거
+                        mainNav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+                
+                // 초기 실행 및 resize 이벤트에 연결
+                updateMenuToggleVisibility();
+                window.addEventListener('resize', updateMenuToggleVisibility);
+                
+                // 이 버튼이 header.html에서 이미 초기화되었음을 표시
+                menuToggle.setAttribute('data-initialized', 'true');
+                menuToggle.setAttribute('data-event-attached', 'true');
+            }
+            
+            // 헤더가 로드되었음을 알리는 이벤트 발생
+            document.dispatchEvent(new CustomEvent('headerReady'));
+            document.dispatchEvent(new CustomEvent('headerLoaded'));
+        })();
     </script>
 </body>
 </html> 

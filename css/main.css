@@ -264,10 +264,13 @@ nav ul li a:hover, nav ul li a.active {
     line-height: 1;
 }
 
+blockquote, q, cite, .quote, .quote-box, .quote-slide, .speech-excerpt {
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-style: normal !important;
+}
+
 blockquote {
     font-size: 20px;
-    font-style: normal;
-    font-family: 'Noto Serif KR', serif;
     margin-bottom: 15px;
     position: relative;
     z-index: 1;
@@ -278,7 +281,6 @@ blockquote cite {
     text-align: right;
     font-size: 14px;
     margin-top: 10px;
-    font-style: normal;
     opacity: 0.8;
 }
 
@@ -463,113 +465,19 @@ footer {
 /* 모바일 메뉴 */
 .menu-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: var(--light-text);
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 5px;
-    z-index: 1000;
 }
 
 /* 반응형 설정 */
 @media (max-width: 992px) {
     header .container {
         flex-direction: row;
-        justify-content: center; /* 중앙 정렬 변경 */
+        justify-content: space-between !important;
         position: relative;
-        padding: 0 50px; /* 양쪽 여백 동일하게 */
-        align-items: center; /* 수직 중앙 정렬 */
+        align-items: center;
     }
     
-    header h1 {
-        margin: 15px 0; /* 제목의 상하 여백 조정 */
-        font-size: 1.5rem; /* 모바일에서 제목 크기 조정 */
-        text-align: center; /* 제목 중앙 정렬 */
-    }
-    
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 50%; /* 버튼 수직 중앙 정렬 */
-        transform: translateY(-50%); /* 정확한 중앙 위치로 조정 */
-        right: 15px;
-        margin: 0; /* 여백 제거 */
-    }
-    
-    nav {
-        position: fixed; /* absolute 대신 fixed 사용 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh; /* 전체 화면 높이 */
-        background-color: rgba(0, 0, 0, 0.95); /* 배경 어둡게 */
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.3s ease; /* opacity도 함께 트랜지션 */
-        z-index: 999;
-        text-align: center; /* 텍스트 중앙 정렬 */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* 수직 중앙 정렬 */
-        opacity: 0;
-        visibility: hidden;
-    }
-    
-    nav.active {
-        max-height: 100vh; /* 전체 화면 높이로 설정 */
-        opacity: 1;
-        visibility: visible;
-        overflow-y: auto; /* 스크롤 가능하도록 설정 */
-        padding: 80px 0 20px; /* 상단에 타이틀을 위한 여백 확보 */
-    }
-    
-    nav ul {
-        flex-direction: column;
-        padding: 10px 0;
-        margin: 0 auto; /* 중앙 정렬 */
-        width: 100%;
-        max-width: 300px; /* 최대 너비 제한 */
-        overflow-y: auto; /* 내용이 많을 경우 스크롤 */
-    }
-    
-    nav ul li {
-        margin: 10px 0;
-        width: 100%;
-        text-align: center;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 10px;
-        border-radius: 0;
-        color: var(--light-text) !important; /* 강제 적용 */
-        font-size: 1.2rem; /* 글꼴 크기 증가 */
-        transition: color 0.2s ease; /* 부드러운 색상 변화 */
-    }
-    
-    nav ul li a:hover {
-        color: var(--primary-color) !important;
-    }
-    
-    /* 닫기 버튼 스타일 */
-    .menu-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        background: none;
-        border: none;
-        color: var(--light-text);
-        cursor: pointer;
-        z-index: 1001;
-        padding: 5px;
-    }
-    
-    .menu-close:hover {
-        color: var(--primary-color);
-    }
+    /* 모바일 메뉴 관련 스타일은 모두 responsive.css로 이동했습니다 */
+    /* 이렇게 하면 스타일 충돌이 줄어듭니다 */
 }
 
 @media (max-width: 768px) {
@@ -582,22 +490,7 @@ footer {
         margin: 12px 0;
     }
     
-    nav.active {
-        padding: 70px 0 20px; /* 모바일에서 상단 여백 조정 */
-    }
-    
-    nav ul {
-        max-width: 280px; /* 더 작은 화면에서 너비 조정 */
-    }
-    
-    header nav ul li {
-        margin: 5px 0;
-    }
-    
-    header nav ul li a {
-        padding: 10px;
-        font-size: 1.1rem;
-    }
+    /* 모바일 메뉴 관련 스타일은 모두 responsive.css로 이동했습니다 */
     
     .hero-content h2 {
         font-size: 2rem;
@@ -697,16 +590,18 @@ footer {
 
 /* detail-hero 클래스의 스타일 수정 */
 .detail-hero {
-    height: 0; /* 높이를 0으로 줄임 */
-    overflow: hidden; /* 내용을 숨김 */
-    background: none; /* 배경 제거 */
-    margin-top: 70px; /* 헤더 높이만큼 여백 유지 */
-    visibility: hidden; /* 시각적으로 숨김 */
-    position: absolute; /* 문서 흐름에서 제거 */
-    pointer-events: none; /* 클릭 이벤트 비활성화 */
+    height: 40vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('../images/trump-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    text-align: center;
 }
 
 .detail-hero h2, 
 .detail-hero p {
-    display: none; /* 텍스트 표시 안 함 */
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 } 

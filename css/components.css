@@ -57,8 +57,13 @@
     border-radius: 10px;
     box-shadow: var(--shadow);
     position: relative;
-    font-family: 'Noto Serif KR', serif;
-    font-style: normal;
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-style: normal !important;
+    color: var(--primary-text);
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    word-wrap: break-word;
 }
 
 .quote-box:before {
@@ -74,12 +79,24 @@
 }
 
 blockquote {
-    font-size: 20px;
-    font-style: normal;
-    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-style: normal !important;
+    font-family: 'Noto Sans KR', sans-serif !important;
     margin-bottom: 15px;
     position: relative;
     z-index: 1;
+    color: var(--primary-text);
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    word-wrap: break-word;
+    padding: 0 10px;
+}
+
+blockquote p {
+    margin-bottom: 15px;
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-style: normal !important;
 }
 
 blockquote cite {
@@ -87,8 +104,9 @@ blockquote cite {
     text-align: right;
     font-size: 14px;
     margin-top: 10px;
-    font-style: normal;
+    font-style: normal !important;
     opacity: 0.8;
+    font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 /* 카드 스타일 */
@@ -141,12 +159,34 @@ blockquote cite {
 
 .quote-slide {
     background-color: var(--card-bg);
-    padding: 30px;
+    padding: 30px 40px;
     border-radius: 10px;
     box-shadow: var(--shadow);
     margin-bottom: 20px;
     position: relative;
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-style: normal !important;
+    color: var(--primary-text);
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+.quote-slide p {
+    font-size: 18px;
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-style: normal !important;
+    margin-bottom: 15px;
+}
+
+.quote-slide .quote-author {
+    text-align: right;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 10px;
+    font-style: normal !important;
+    font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 /* 2024 공약 스타일 */
@@ -231,8 +271,8 @@ blockquote cite {
     border-left: 4px solid var(--primary-color);
     padding: 20px;
     margin: 20px 0;
-    font-style: normal;
-    font-family: 'Noto Serif KR', serif;
+    font-style: normal !important;
+    font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 .breadcrumb {
@@ -252,7 +292,18 @@ blockquote cite {
     opacity: 0.7;
 }
 
-/* 상세 페이지 히어로 스타일 추가 */
+/* 상세 페이지 히어로 섹션 스타일 */
+.detail-hero {
+    height: 40vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('../images/trump-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    text-align: center;
+}
+
 .detail-hero h2 {
     color: #fff;
     font-size: 2.5rem;
@@ -267,25 +318,69 @@ blockquote cite {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 북 레퍼런스 스타일 */
+.book-reference {
+    display: flex;
+    margin: 30px 0;
+    background-color: var(--light-bg);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.book-image {
+    flex: 0 0 120px;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.book-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.book-content h4 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.book-content p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
 /* 다크 모드 토글 버튼 */
 .theme-toggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 50px;
+    min-width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 25px;
     background-color: var(--primary-color);
-    color: var(--light-text);
+    color: white;
     border: none;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 20px;
+    cursor: pointer;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    padding: 5px;
+    width: 50px;
 }
 
 .theme-toggle:hover {
@@ -294,11 +389,28 @@ blockquote cite {
 }
 
 .theme-toggle i {
-    transition: transform 0.5s ease;
+    color: white !important;
+    font-size: 20px !important;
 }
 
-.theme-toggle:hover i {
-    transform: rotate(30deg);
+.theme-text {
+    display: none;
+}
+
+.theme-toggle:hover .theme-text {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        padding: 5px;
+        width: 50px;
+        min-width: 50px;
+    }
+    
+    .theme-text {
+        display: none;
+    }
 }
 
 /* 타임라인 스타일 */
@@ -399,8 +511,8 @@ blockquote cite {
 }
 
 .speech-excerpt blockquote {
-    font-style: normal;
-    font-family: 'Noto Serif KR', serif;
+    font-style: normal !important;
+    font-family: 'Noto Sans KR', sans-serif !important;
     margin-bottom: 15px;
     padding: 10px 15px;
     background-color: rgba(255, 255, 255, 0.7);
@@ -438,29 +550,44 @@ blockquote cite {
 /* 소셜 미디어 공유 버튼 */
 .social-share {
     display: flex;
-    justify-content: center;
-    margin: 30px 0;
     gap: 15px;
+    justify-content: center;
+    margin: 40px 0;
 }
 
 .social-share-button {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 40px;
+    align-items: center;
+    min-width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    color: #fff;
-    text-decoration: none;
+    border-radius: 20px;
+    color: white;
     transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+.social-share-button i {
+    color: white !important;
+    font-size: 16px !important;
+    margin-right: 5px;
+}
+
+.share-text {
+    display: none;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .social-share-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding-right: 20px;
+}
+
+.social-share-button:hover .share-text {
+    display: inline-block;
 }
 
 .social-share-button.facebook {
@@ -476,11 +603,54 @@ blockquote cite {
 }
 
 .social-share-button.email {
-    background-color: #dd4b39;
+    background-color: #747474;
 }
 
-.social-share-button i {
-    font-size: 18px;
+@media (max-width: 768px) {
+    .social-share {
+        flex-wrap: wrap;
+    }
+    
+    .social-share-button {
+        padding: 5px 10px;
+        width: calc(50% - 10px);
+        margin-bottom: 10px;
+    }
+    
+    .share-text {
+        display: inline-block;
+    }
+}
+
+/* Font Awesome 아이콘 스타일 강화 */
+[class^="fa-"], 
+[class*=" fa-"],
+.fas,
+.fab,
+.far {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
+.far {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 400;
+}
+
+/* 메뉴 토글 버튼 강화 */
+.menu-toggle {
+    padding: 5px !important;
+}
+
+.menu-toggle i {
+    display: inline-block !important;
+    color: white !important;
 }
 
 /* 날짜 스타일 for 타임라인 */

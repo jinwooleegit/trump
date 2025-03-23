@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <script>
-        // 페이지 로딩 시간 측정 시작
-        const pageStartTime = performance.now();
-        let headerLoadTime;
-        
-        // 헤더는 이미 HTML에 인라인으로 포함되어 있으므로 바로 로드 시간 기록
-        headerLoadTime = performance.now() - pageStartTime;
-        
-        // DOM이 로드된 후 이벤트 발생
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('헤더 로딩 시간: ' + headerLoadTime.toFixed(2) + 'ms');
-            document.dispatchEvent(new CustomEvent('headerReady'));
-            document.dispatchEvent(new CustomEvent('headerLoaded'));
-        });
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트럼프의 말과 비전</title>
-    <meta name="description" content="도널드 트럼프의 정치 철학, 경제 비전, 외교 전략, 사회 정책을 탐구하는 웹사이트입니다.">
-    <meta name="keywords" content="트럼프, 정치 철학, 경제 비전, 외교 전략, 사회 정책, 미국 우선주의">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <meta name="description" content="도널드 트럼프의 정치 철학, 경제 정책, 외교 접근법, 주요 발언 등을 탐색하는 정보 사이트입니다.">
+    <meta name="keywords" content="도널드 트럼프, 트럼프 정치, 미국 정치, 트럼프 경제 정책, 트럼프 외교 정책">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css?v=2024032201">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+    <script src="js/include.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
-    <!-- 헤더 부분 (인라인으로 포함) -->
-    <header>
-        <div class="container">
-            <h1><span class="text-primary">트럼프</span>의 말과 비전</h1>
-            <nav role="navigation" aria-label="메인 메뉴">
-                <ul>
-                    <li><a href="index.html" id="nav-home">홈</a></li>
-                    <li><a href="political-philosophy.html" id="nav-philosophy">정치 철학</a></li>
-                    <li><a href="economic-vision.html" id="nav-economic">경제 비전</a></li>
-                    <li><a href="foreign-policy.html" id="nav-foreign">외교 전략</a></li>
-                    <li><a href="social-policy.html" id="nav-social">사회 정책</a></li>
-                    <li><a href="leadership.html" id="nav-leadership">리더십</a></li>
-                    <li><a href="timeline.html" id="nav-timeline">연대표</a></li>
-                    <li><a href="speeches.html" id="nav-speeches">연설문</a></li>
-                    <li><a href="personal-philosophy.html" id="nav-personal">개인 철학</a></li>
-                    <li><a href="campaign-2024.html" id="nav-campaign">2024년 공약</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <div id="header-placeholder"></div>
+    
+    <main>
     <!-- 히어로 섹션 -->
     <section class="hero" role="banner">
         <div class="container">
@@ -188,23 +155,9 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- 푸터 부분 -->
     <div id="footer-placeholder"></div>
-
-    <script src="js/include.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // 페이지 완전 로딩 시간 측정
-        window.addEventListener('load', function() {
-            const pageLoadTime = performance.now() - pageStartTime;
-            console.log('페이지 총 로딩 시간: ' + pageLoadTime.toFixed(2) + 'ms');
-            
-            // 헤더 로딩 시간이 있으면 출력
-            if(headerLoadTime) {
-                console.log('헤더가 총 로딩 시간의 ' + ((headerLoadTime / pageLoadTime) * 100).toFixed(2) + '% 차지');
-            }
-        });
-    </script>
 </body>
 </html> 

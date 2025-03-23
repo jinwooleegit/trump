@@ -89,54 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 로드 시 한 번 실행
     animateOnScroll();
 
-    // 모바일 메뉴 토글 기능
-    const createMobileMenu = () => {
-        const header = document.querySelector('header');
-        const nav = document.querySelector('nav');
-        
-        // 모바일 메뉴 버튼 생성
-        const menuButton = document.createElement('button');
-        menuButton.className = 'mobile-menu-btn';
-        menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-        menuButton.style.display = 'none';
-        
-        // 스타일 추가
-        menuButton.style.background = 'transparent';
-        menuButton.style.border = 'none';
-        menuButton.style.color = 'white';
-        menuButton.style.fontSize = '1.5rem';
-        menuButton.style.cursor = 'pointer';
-        
-        // 헤더에 버튼 추가
-        header.querySelector('.container').appendChild(menuButton);
-        
-        // 창 크기에 따른 메뉴 버튼 표시/숨김
-        function toggleMenuButton() {
-            if (window.innerWidth <= 768) {
-                menuButton.style.display = 'block';
-                nav.style.display = 'none';
-            } else {
-                menuButton.style.display = 'none';
-                nav.style.display = 'block';
-            }
-        }
-        
-        // 메뉴 버튼 클릭 이벤트
-        menuButton.addEventListener('click', function() {
-            if (nav.style.display === 'none' || nav.style.display === '') {
-                nav.style.display = 'block';
-                menuButton.innerHTML = '<i class="fas fa-times"></i>';
-            } else {
-                nav.style.display = 'none';
-                menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-        
-        // 초기 실행 및 리사이즈 이벤트에 연결
-        toggleMenuButton();
-        window.addEventListener('resize', toggleMenuButton);
-    };
-    
-    // 모바일 메뉴 초기화
-    createMobileMenu();
+    // 모바일 메뉴 기능은 header.html 내에 이미 구현되어 있습니다.
+    // 중복 생성을 방지하기 위해 createMobileMenu 함수를 제거했습니다.
 }); 
